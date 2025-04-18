@@ -1,4 +1,5 @@
-
+import React from "react";
+import { ChartLine, Rocket } from "lucide-react";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -61,7 +62,24 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-finlist">
+      <header className="bg-background border-b border-border/10 py-4 md:py-6 sticky top-0 z-50 glass-morphism">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <ChartLine className="h-8 w-8 text-finlist-primary" />
+            <h1 className="text-2xl md:text-3xl font-bold text-primary tracking-tight">
+              FinList
+            </h1>
+          </div>
+          <nav className="hidden md:flex space-x-6 text-muted-foreground">
+            <a href="#features" className="hover:text-primary transition-colors">Features</a>
+            <a href="#sectors" className="hover:text-primary transition-colors">Sectors</a>
+            <a href="#newsletter" className="hover:text-primary transition-colors">Newsletter</a>
+          </nav>
+          <Rocket className="h-6 w-6 text-finlist-accent hidden md:block" />
+        </div>
+      </header>
+
       <section className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">

@@ -63,6 +63,20 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			fontFamily: {
+        'finlist': ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        // Add a custom color palette inspired by dark modern design
+        'finlist-primary': {
+          DEFAULT: '#1E90FF',  // Vibrant blue
+          dark: '#0D47A1',     // Deeper blue for contrast
+        },
+        'finlist-accent': {
+          DEFAULT: '#6A5ACD',  // Slate blue for depth
+          light: '#8A7FEA'     // Lighter variant
+        }
+      },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
