@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 @tailwind base;
@@ -49,7 +50,7 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-white/10 selection:text-white;
+    @apply border-[hsl(var(--border))] selection:bg-white/10 selection:text-white;
   }
   
   body {
