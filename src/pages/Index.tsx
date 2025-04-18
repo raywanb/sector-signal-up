@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { MailCheck, ChevronRight, Building2, Briefcase, TrendingUp, BarChart2, PieChart } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 
 const sectors = [
@@ -40,17 +41,35 @@ export default function Index() {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    
-    toast({
-      title: "Successfully subscribed!",
-      description: "You'll receive updates for your selected sectors soon.",
-    });
-    
-    form.reset();
-    setSelectedSectors([]);
+    try {
+      const { error } = await supabase
+        .from('finlist')
+        .insert([
+          {
+            email: data.email,
+            selected_sectors: data.sectors
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Successfully subscribed!",
+        description: "You'll receive updates for your selected sectors soon.",
+      });
+      
+      form.reset();
+      setSelectedSectors([]);
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Subscription failed",
+        description: "There was a problem subscribing to the newsletter. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const toggleSector = (sectorId: string) => {
