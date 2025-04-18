@@ -12,21 +12,21 @@ export type Database = {
       finlist: {
         Row: {
           created_at: string
-          email: string | null
+          email: string
           id: number
-          selected_sectors: Json | null
+          selected_sectors: Json
         }
         Insert: {
           created_at?: string
-          email?: string | null
+          email?: string
           id?: number
-          selected_sectors?: Json | null
+          selected_sectors: Json
         }
         Update: {
           created_at?: string
-          email?: string | null
+          email?: string
           id?: number
-          selected_sectors?: Json | null
+          selected_sectors?: Json
         }
         Relationships: []
       }
