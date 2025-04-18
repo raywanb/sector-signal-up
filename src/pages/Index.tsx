@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { MailCheck, ChevronRight, Building2, Briefcase, TrendingUp, BarChart2, PieChart } from "lucide-react";
 
+
 const sectors = [
   { id: "tech", label: "Technology" },
   { id: "finance", label: "Banking & Finance" },
@@ -82,28 +83,22 @@ export default function Index() {
 
       <section className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column */}
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight animated-gradient">
               Financial Intelligence Redefined
             </h1>
             <p className="text-xl text-muted-foreground">
               Get cutting-edge insights and expert analysis across multiple sectors. Stay ahead of market trends with our curated financial newsletter.
+              <br />
+              <br />
+              <span className="text-primary font-semibold">Subscribe now</span> to receive tailored updates directly to your inbox.
             </p>
-            <div className="flex space-x-4">
-              <TrendingUp className="h-12 w-12 text-blue-500 opacity-70" />
-              <BarChart2 className="h-12 w-12 text-green-500 opacity-70" />
-              <PieChart className="h-12 w-12 text-purple-500 opacity-70" />
-            </div>
-          </div>
-          <div className="hidden md:block glass-morphism rounded-2xl p-6">
-            <img 
-              src="/placeholder.svg" 
-              alt="Financial Insights Dashboard" 
-              className="w-full h-auto rounded-xl shadow-2xl"
-            />
           </div>
         </div>
       </section>
+
 
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid md:grid-cols-3 gap-8">
@@ -158,7 +153,7 @@ export default function Index() {
                 <Input
                   placeholder="you@example.com"
                   type="email"
-                  className="pr-10 bg-muted/30"
+                  className="pr-30 bg-transparent"
                   {...form.register("email")}
                 />
                 <MailCheck className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />

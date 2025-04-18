@@ -67,3 +67,24 @@
     @apply backdrop-blur-xl bg-black/10 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
 }
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(270deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
