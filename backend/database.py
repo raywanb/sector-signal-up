@@ -11,6 +11,8 @@ logger = Logger(__name__)
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 
+logger.debug("SUPABASE URL", SUPABASE_URL)
+logger.debug("SERVICE ROLE KEY", SUPABASE_SERVICE_ROLE_KEY)
 supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
 def slugify(text):
