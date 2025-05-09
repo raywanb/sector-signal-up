@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE = process.env.VITE_API_BASE_URL;
+const API_BASE = "https://sector-signal-up-backend.vercel.app";
 // The article fetching function
 const fetchArticleBySlug = async (slug) => {
   const response = await fetch(`${API_BASE}/get_article_by_slug/${slug}`);
