@@ -1,6 +1,6 @@
 import React from "react";
-import { ChartLine, Rocket } from "lucide-react";
-import { useState } from "react";
+import { ChartLine, Rocket, Loader, AlertTriangle, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { MailCheck, ChevronRight, Building2, Briefcase, TrendingUp, BarChart2, PieChart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchStockQuotes, StockQuote } from "@/integrations/alpha-vantage/client";
 
 
 const sectors = [
@@ -26,6 +27,73 @@ const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   sectors: z.array(z.string()).min(1, "Please select at least one sector"),
 });
+
+const DEFAULT_STOCKS = [
+  { symbol: "AAPL", price: 175.04, change: 1.23, changePercent: 0.71 },
+  { symbol: "MSFT", price: 415.32, change: -0.45, changePercent: -0.11 },
+  { symbol: "GOOGL", price: 142.56, change: 0.78, changePercent: 0.55 },
+  { symbol: "AMZN", price: 178.75, change: 2.15, changePercent: 1.22 },
+  { symbol: "META", price: 485.58, change: -1.02, changePercent: -0.21 },
+];
+
+// Update StockTicker component
+const StockTicker = () => {
+  const [stocks, setStocks] = useState<StockQuote[]>(DEFAULT_STOCKS);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META'];
+
+  const fetchStocks = async () => {
+    try {
+      const quotes = await fetchStockQuotes(symbols);
+      setStocks(quotes);
+      setError(null);
+    } catch (err) {
+      console.error('Error in fetchStocks:', err);
+      setError('Failed to fetch live market data');
+      setStocks(DEFAULT_STOCKS);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStocks();
+    const interval = setInterval(fetchStocks, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-secondary/40 rounded-2xl p-8 h-full flex items-center justify-center shadow-lg">
+        <div className="flex items-center space-x-2 text-muted-foreground font-finlist">
+          <Loader className="animate-spin h-5 w-5" />
+          <span>Loading market data...</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-secondary/40 rounded-2xl p-8 shadow-lg w-full max-w-xs font-finlist">
+      <div className="divide-y divide-border/20">
+        {stocks.map((stock, idx) => (
+          <div key={stock.symbol} className={`flex justify-between items-center py-5 ${idx === 0 ? '' : 'mt-1'}`}> 
+            <div className={`flex items-center gap-8`}>
+              <span className="font-bold text-2xl text-foreground tracking-wide">{stock.symbol}</span>
+              <span className="font-mono text-2xl text-gray-100">${stock.price.toFixed(2)}</span>
+              <span className={`flex items-center font-bold text-xl ${stock.changePercent >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                {stock.changePercent >= 0 ? <ArrowUpRight className="h-6 w-6 mr-1" /> : <ArrowDownRight className="h-6 w-6 mr-1" />}
+                {stock.changePercent >= 0 ? '+' : ''}{stock.changePercent.toFixed(2)}%
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function Index() {
   const [selectedSectors, setSelectedSectors] = useState<string[]>([]);
@@ -101,7 +169,7 @@ export default function Index() {
       </header>
 
       <section className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center min-h-[400px]">
           
           {/* Left Column */}
           <div className="space-y-6">
@@ -114,6 +182,11 @@ export default function Index() {
               <br />
               <span className="text-primary font-semibold">Subscribe now</span> to receive tailored updates directly to your inbox.
             </p>
+          </div>
+
+          {/* Right Column - Stock Ticker */}
+          <div className="hidden md:flex flex-col items-center justify-center h-full w-full">
+            <StockTicker />
           </div>
         </div>
       </section>
