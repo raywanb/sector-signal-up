@@ -5,9 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 
+const API_BASE = process.env.VITE_API_BASE_URL;
 // The article fetching function
 const fetchArticleBySlug = async (slug) => {
-  const response = await fetch(`http://localhost:8000/get_article_by_slug/${slug}`);
+  const response = await fetch(`${API_BASE}/get_article_by_slug/${slug}`);
   if (!response.ok) {
     throw new Error("Failed to fetch article");
   }
