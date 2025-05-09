@@ -76,21 +76,20 @@ const StockTicker = () => {
   }
 
   return (
-    <div className="bg-secondary/40 rounded-2xl p-8 shadow-lg w-full max-w-xs font-finlist">
-      <div className="divide-y divide-border/20">
-        {stocks.map((stock, idx) => (
-          <div key={stock.symbol} className={`flex justify-between items-center py-5 ${idx === 0 ? '' : 'mt-1'}`}> 
-            <div className={`flex items-center gap-8`}>
-              <span className="font-bold text-2xl text-foreground tracking-wide">{stock.symbol}</span>
-              <span className="font-mono text-2xl text-gray-100">${stock.price.toFixed(2)}</span>
-              <span className={`flex items-center font-bold text-xl ${stock.changePercent >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {stock.changePercent >= 0 ? <ArrowUpRight className="h-6 w-6 mr-1" /> : <ArrowDownRight className="h-6 w-6 mr-1" />}
-                {stock.changePercent >= 0 ? '+' : ''}{stock.changePercent.toFixed(2)}%
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="w-full max-w-xs font-finlist bg-transparent rounded-lg p-3 divide-y divide-border/10">
+      {stocks.map((stock) => (
+        <div key={stock.symbol} className="flex items-center gap-4 py-2">
+          <span className="font-semibold text-base text-foreground tracking-wide">{stock.symbol}</span>
+          <span className="font-mono text-base text-gray-100">${stock.price.toFixed(2)}</span>
+          <span className={`flex items-center font-semibold text-base ${stock.changePercent >= 0 ? 'text-green-400' : 'text-red-400'}`}
+            >
+            {stock.changePercent >= 0
+              ? <ArrowUpRight className="h-4 w-4 mr-1" />
+              : <ArrowDownRight className="h-4 w-4 mr-1" />}
+            {stock.changePercent >= 0 ? '+' : ''}{stock.changePercent.toFixed(2)}%
+          </span>
+        </div>
+      ))}
     </div>
   );
 };
