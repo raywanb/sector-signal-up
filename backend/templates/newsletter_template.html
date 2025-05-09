@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinList Weekly Insights</title>
+    <style type="text/css">
+        /* Client-specific resets */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; }
+        
+        /* General styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            background-color: #f8f9fa;
+        }
+        
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+            }
+            .mobile-padding {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+            .feature {
+                display: block !important;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8f9fa;">
+    <!-- Main container -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 20px 0;">
+                <!-- Content container -->
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" class="container">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding: 30px 30px 20px 30px; background-color: #1c1c1c; border-top-left-radius: 8px; border-top-right-radius: 8px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <img src="https://via.placeholder.com/30x30/4385ff/ffffff?text=📈" alt="Chart Icon" width="30" height="30" style="display: inline-block; margin-right: 10px; vertical-align: middle;" />
+                                        <span style="color: #ffffff; font-size: 26px; font-weight: bold; display: inline-block; vertical-align: middle;">FinList</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding-top: 10px;">
+                                        <p style="color: #aaaaaa; margin: 0; font-size: 16px;">Financial Intelligence Redefined</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Title -->
+                    <tr>
+                        <td align="center" style="padding: 30px 30px 0 30px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <h1 style="color: #333333; font-size: 24px; margin: 0; font-weight: bold;">Weekly Financial Insights</h1>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 10px 0 0 0;">
+                                        <p style="color: #777777; margin: 0;">{{ date }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Greeting -->
+                    <tr>
+                        <td style="padding: 30px 30px 20px 30px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <p style="color: #333333; margin: 0 0 15px 0;">Hello {{ user_name }},</p>
+                                        <p style="color: #333333; margin: 0;">Here are this week's curated insights and analysis tailored to your selected sectors. Stay ahead of market trends with our expert financial intelligence.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Articles -->
+                    {% for article in articles %}
+                    <tr>
+                        <td style="padding: 0 30px 30px 30px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; border-radius: 8px; border: 1px solid #eeeeee;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    {% if article.sector == "tech" %}
+                                                    <span style="display: inline-block; background-color: #e7f5ff; color: #3b82f6; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Technology</span>
+                                                    {% elif article.sector == "finance" %}
+                                                    <span style="display: inline-block; background-color: #e6fcf5; color: #10b981; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Banking & Finance</span>
+                                                    {% elif article.sector == "health" %}
+                                                    <span style="display: inline-block; background-color: #fee2e2; color: #ef4444; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Healthcare</span>
+                                                    {% elif article.sector == "energy" %}
+                                                    <span style="display: inline-block; background-color: #fef3c7; color: #f59e0b; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Energy & Utilities</span>
+                                                    {% elif article.sector == "consumer" %}
+                                                    <span style="display: inline-block; background-color: #ede9fe; color: #8b5cf6; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Consumer Goods</span>
+                                                    {% elif article.sector == "real-estate" %}
+                                                    <span style="display: inline-block; background-color: #fce7f3; color: #ec4899; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">Real Estate</span>
+                                                    {% else %}
+                                                    <span style="display: inline-block; background-color: #f3f4f6; color: #4b5563; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">{{ article.sector | title }}</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 0 10px 0;">
+                                                    <h2 style="color: #333333; font-size: 18px; margin: 0; font-weight: 600;">{{ article.article_name }}</h2>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 15px;">
+                                                    <p style="color: #4b5563; margin: 0; line-height: 1.6;">
+                                                    {% if article.preview %}
+                                                        {{ article.preview }}
+                                                    {% else %}
+                                                        A new research article providing expert analysis and insights into current and emerging trends in the {{ article.sector }} sector.
+                                                    {% endif %}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ website_url }}/article/{{ article.slug }}" style="display: inline-block; background-color: #3b82f6; color: #ffffff; padding: 8px 16px; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px;">Read Full Analysis</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    <!-- Features -->
+                    <tr>
+                        <td style="padding: 0 30px 30px 30px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td valign="top" width="32%" style="padding-right: 2%;" class="feature">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; border-radius: 8px; height: 180px;">
+                                            <tr>
+                                                <td align="center" style="padding: 20px;">
+                                                    <img src="https://via.placeholder.com/30x30/3b82f6/ffffff?text=📈" alt="Market Insights" width="30" height="30" style="margin-bottom: 10px;" />
+                                                    <h3 style="color: #333333; font-size: 16px; margin: 0 0 10px 0; font-weight: 600;">Market Insights</h3>
+                                                    <p style="color: #4b5563; margin: 0; font-size: 14px;">Daily updates on global market trends and expert analysis</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td valign="top" width="32%" style="padding-right: 2%;" class="feature">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; border-radius: 8px; height: 180px;">
+                                            <tr>
+                                                <td align="center" style="padding: 20px;">
+                                                    <img src="https://via.placeholder.com/30x30/10b981/ffffff?text=📊" alt="Sector Analysis" width="30" height="30" style="margin-bottom: 10px;" />
+                                                    <h3 style="color: #333333; font-size: 16px; margin: 0 0 10px 0; font-weight: 600;">Sector Analysis</h3>
+                                                    <p style="color: #4b5563; margin: 0; font-size: 14px;">Deep dive into sector-specific opportunities and risks</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td valign="top" width="32%" class="feature">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; border-radius: 8px; height: 180px;">
+                                            <tr>
+                                                <td align="center" style="padding: 20px;">
+                                                    <img src="https://via.placeholder.com/30x30/8b5cf6/ffffff?text=🔍" alt="Portfolio Insights" width="30" height="30" style="margin-bottom: 10px;" />
+                                                    <h3 style="color: #333333; font-size: 16px; margin: 0 0 10px 0; font-weight: 600;">Portfolio Insights</h3>
+                                                    <p style="color: #4b5563; margin: 0; font-size: 14px;">Tailored recommendations for your investment strategy</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #1c1c1c; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" style="padding-bottom: 20px;">
+                                        <p style="color: #aaaaaa; margin: 0; font-size: 14px;">Thank you for subscribing to FinList. Get cutting-edge insights and expert analysis across multiple sectors.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding-bottom: 20px;">
+                                        <a href="{{ website_url }}/unsubscribe?email={{ subscriber_email|urlencode }}" style="color: #dddddd; text-decoration: underline; margin: 0 10px; font-size: 13px;">Unsubscribe</a>
+                                        <a href="{{ website_url }}/preferences?email={{ subscriber_email|urlencode }}" style="color: #dddddd; text-decoration: underline; margin: 0 10px; font-size: 13px;">Update Preferences</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <p style="color: #777777; margin: 0; font-size: 13px;">&copy; {{ date.split(' ')[2] }} FinList. All rights reserved.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
